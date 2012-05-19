@@ -1,4 +1,6 @@
 TailorTack::Application.routes.draw do
+  resources :customers
+
   resources :orders
 
   # The priority is based upon order of creation:
