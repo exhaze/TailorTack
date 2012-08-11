@@ -1,10 +1,10 @@
 <h1>Listing orders</h1>
 
-<table>
-  <tr>
-    <th>Price</th>
-    <th>Due date</th>
+<table class="table table-striped table-bordered table-condensed">
+  <tr>	
 	<th>Description</th>
+    <th>Due date</th>
+    <th>Price</th>
 	<th>Time Estimate</th>
 	<th>Time Actual</th>
     <th></th>
@@ -13,10 +13,10 @@
   </tr>
 
 <% @orders.each do |order| %>
-  <tr>
-    <td><%= number_to_currency(order.price, :unit => "$") %></td>
+  <tr>	
+  	<td><%= order.description %></td>
     <td><%= order.due_date %></td>
-    <td><%= order.description %></td>
+    <td><%= number_to_currency(order.price, :unit => "$") %></td>
     <td><%= order.time_estimate %></td>
     <td><%= order.time_actual %></td>
     <td><%= link_to 'Show', order %></td>
