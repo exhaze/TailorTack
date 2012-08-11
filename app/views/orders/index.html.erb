@@ -1,31 +1,44 @@
-<h1>Listing orders</h1>
-
-<table class="table table-striped table-bordered table-condensed">
-  <tr>	
-	<th>Description</th>
-    <th>Due date</th>
-    <th>Price</th>
-	<th>Time Estimate</th>
-	<th>Time Actual</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @orders.each do |order| %>
-  <tr>	
-  	<td><%= order.description %></td>
-    <td><%= order.due_date %></td>
-    <td><%= number_to_currency(order.price, :unit => "$") %></td>
-    <td><%= order.time_estimate %></td>
-    <td><%= order.time_actual %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<%- model_class = Order -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:due_date) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:time_estimate) %></th>
+      <th><%= model_class.human_attribute_name(:time_actual) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= order.price %></td>
+        <td><%= order.due_date %></td>
+        <td><%= order.description %></td>
+        <td><%= order.time_estimate %></td>
+        <td><%= order.time_actual %></td>
+        <td><%=l order.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_order_path(order), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      order_path(order),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Order', new_order_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_order_path,
+            :class => 'btn btn-primary' %>
