@@ -1,5 +1,7 @@
 TailorTack::Application.routes.draw do
-  resources :customers
+  resources :customers do
+    resources :orders
+  end
 
   resources :orders
 

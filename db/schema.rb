@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811043152) do
+ActiveRecord::Schema.define(:version => 20120811082847) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(:version => 20120811043152) do
     t.text     "description"
     t.datetime "time_estimate"
     t.datetime "time_actual"
+    t.integer  "customer_id"
   end
+
+  add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
 
 end
