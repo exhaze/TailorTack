@@ -4,6 +4,9 @@
   <tr>
     <th>Price</th>
     <th>Due date</th>
+	<th>Description</th>
+	<th>Time Estimate</th>
+	<th>Time Actual</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +14,11 @@
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= order.price %></td>
+    <td><%= number_to_currency(order.price, :unit => "$") %></td>
     <td><%= order.due_date %></td>
+    <td><%= order.description %></td>
+    <td><%= order.time_estimate %></td>
+    <td><%= order.time_actual %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>

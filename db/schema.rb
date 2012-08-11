@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120519031107) do
+ActiveRecord::Schema.define(:version => 20120811043152) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -23,8 +23,11 @@ ActiveRecord::Schema.define(:version => 20120519031107) do
   create_table "orders", :force => true do |t|
     t.decimal  "price"
     t.datetime "due_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.text     "description"
+    t.datetime "time_estimate"
+    t.datetime "time_actual"
   end
 
 end
